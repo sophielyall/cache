@@ -9,8 +9,6 @@
 <a href="receiveDoc.php">Receive a Document</a>
 
 
-
-
   <form id="form" method="POST">
     <p><strong>Delete Cache</strong></p>
     

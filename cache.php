@@ -33,7 +33,9 @@ if ($conn->connect_error) {
 	}echo "Connecec successfuly";
 	//$toSub = new DateInterval('PT30S');
 	//$date->sub($toSub);
-$delete = "DELETE FROM document WHERE ttl <  (now() - interval 30 second)";
+	
+	//delete documents that are past time to live
+$delete = "DELETE FROM document WHERE ttl <  ('now()' - interval 30 second)";
 	if ($conn->query($delete) === TRUE) {
     echo "Record deleted successfully";
 } else {
@@ -42,7 +44,8 @@ $delete = "DELETE FROM document WHERE ttl <  (now() - interval 30 second)";
 	if(!empty($_POST['ID']))
 {
 $time = date("Y-m-d H:i:s");
-$sql = "INSERT INTO document (ID, Message, ttl) VALUES ( ". $_POST['ID'] . ", '" . $_POST['Message']. "','" . $time . "')";
+//create 
+$sql = "INSERT INTO document (ID, Message, ttl) VALUES ( ". $_POST['ID'] . ", '" . $_POST['Message']. "', now())";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 	echo "";
